@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ChessBoardForm.qml</file>
+        <file>images.jpeg</file>
+        <file>chess.pro</file>
+        <file>pieces/bishop_black.png</file>
+        <file>pieces/bishop_white.png</file>
+        <file>pieces/king_black.png</file>
+        <file>pieces/king_white.png</file>
+        <file>pieces/knight_black.png</file>
+        <file>pieces/knight_white.png</file>
+        <file>pieces/pawn_black.png</file>
+        <file>pieces/pawn_white.png</file>
+        <file>pieces/queen_black.png</file>
+        <file>pieces/queen_white.png</file>
+        <file>pieces/rook_black.png</file>
+        <file>pieces/rook_white.png</file>
+        <file>ChessReplayForm.qml</file>
+    </qresource>
+</RCC>
