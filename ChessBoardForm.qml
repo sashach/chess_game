@@ -3,6 +3,7 @@ import QtQuick.Controls 1.3
 import mymodule 1.0
 
 Item {
+    id: item
     property alias buttonSave: buttonSave
 
     Rectangle {
@@ -18,7 +19,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 8
             onClicked: {
-                chessBoardModel.saveGame()
+                chessGameStorage.saveGame()
             }
         }
 
@@ -56,7 +57,8 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 8
             onClicked: {
-                root.destroy()
+                chessBoardModel.stopGame()
+                item.destroy()
                 mainWindow.enableButtons()
             }
         }

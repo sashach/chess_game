@@ -1,6 +1,7 @@
 #include "chessboardform.h"
 #include "piecesmanager.h"
 #include "chessboardmodel.h"
+#include "chessboard.h"
 #include <QPainter>
 #include <QDebug>
 
@@ -78,15 +79,17 @@ void ChessBoardForm::paint(QPainter * painter)
         painter->drawText(p, str);
     }
 
-    for(int row = 0; row < ChessBoardModel::MAX_ROWS; ++row) {
-        for(int col = 0; col < ChessBoardModel::MAX_ROWS; ++col) {
-            if(ChessBoardModel::Instance().IsSelectedCell(row, col)) {
+    ChessBoardModel & model = ChessBoardModel::Instance();
+
+    for(int row = 0; row < ChessBoard::MAX_ROWS; ++row) {
+        for(int col = 0; col < ChessBoard::MAX_ROWS; ++col) {
+            if(model.IsSelectedCell(row, col)) {
                 painter->setBrush(QBrush(QColor(240, 240, 100), Qt::Dense2Pattern));
                 painter->drawRect(GetCellLeftX(col) + 5, GetCellTopY(row) + 5, 40, 40);
             }
 
             QPoint p(GetCellLeftX(col) + 5, GetCellTopY(row) + 5);
-            painter->drawImage(p, PiecesManager::Instance().GetImage(ChessBoardModel::Instance().GetPieceForCell(row, col)));
+            painter->drawImage(p, Pieces.GetImage(model.GetPieceForCell(row, col)));
         }
     }
 
@@ -94,14 +97,14 @@ void ChessBoardForm::paint(QPainter * painter)
         int cap_y = BaseY;
         for(auto it: v) {
             QPoint p(cap_x, cap_y);
-            painter->drawImage(p, PiecesManager::Instance().GetImage(it));
+            painter->drawImage(p, Pieces.GetImage(it));
             cap_y -= 40;
         }
     };
 
-    draw_captured(BaseX - 70, ChessBoardModel::Instance().GetCapturedWhite());
-    draw_captured(BaseX + CELL_WIDTH * ChessBoardModel::MAX_ROWS + 30,
-                  ChessBoardModel::Instance().GetCapturedBlack());
+    draw_captured(BaseX - 70, model.GetCapturedWhite());
+    draw_captured(BaseX + CELL_WIDTH * ChessBoard::MAX_ROWS + 30,
+                  model.GetCapturedBlack());
 }
 
 int ChessBoardForm::GetCellLeftX(const int col)

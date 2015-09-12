@@ -9,7 +9,7 @@ class PiecesManager: public QObject
 {
     Q_OBJECT
 public:
-    static PiecesManager & Instance();
+    PiecesManager();
     ~PiecesManager();
 
     enum PiecesTypes {
@@ -28,18 +28,19 @@ public:
         PIECE_BLACK_PAWN,
         PIECE_LAST
     };
+    typedef QVector <PiecesManager::PiecesTypes> PiecesVector;
 
     void Init();
     QImage & GetImage(const PiecesTypes t);
 
 private:
-    PiecesManager();
-
     QMap <PiecesTypes, QImage> PiecesImages;
 
 signals:
 
 public slots:
 };
+
+
 
 #endif // PIECESMANAGER_H

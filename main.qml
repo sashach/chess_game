@@ -39,7 +39,6 @@ ApplicationWindow {
                 Qt.createQmlObject('ChessBoardForm{anchors.fill: parent}', mainWindow, 'chessBoardForm')
                 chessBoardModel.startNewGame()
                 disableButtons()
-                ChessBoardForm.buttonSave.visible = true
             }
         }
 
@@ -49,7 +48,9 @@ ApplicationWindow {
             enabled: true
             onClicked: {
                 Qt.createQmlObject('ChessReplayForm{anchors.fill: parent}', mainWindow, 'chessReplayForm')
-                chessBoardModel.loadGame()
+                chessBoardModel.clearBoard()
+                chessBoardModel.prepareBoard()
+                chessGameStorage.loadGame()
                 disableButtons()
             }
         }

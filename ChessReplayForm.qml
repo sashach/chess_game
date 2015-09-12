@@ -3,6 +3,7 @@ import QtQuick.Controls 1.3
 import mymodule 1.0
 
 Item {
+    id: item
     Rectangle {
         id: root
         anchors.fill: parent
@@ -50,11 +51,14 @@ Item {
                 onCurrentPlayerChanged: {
                     currentPlayerText.text = ((id == 1) ? "White Move" : "Black Move") + " [" + move_num + "]"
                 }
-                onRecordIOMessage: {
-                    currentPlayerText.text = str
-                }
                 onReplayMoveChanged: {
                     currentPlayerText.text = "Move " +move + " of " + size + " moves"
+                }
+            }
+            Connections {
+                target: chessGameStorage
+                onRecordIOMessage: {
+                    currentPlayerText.text = str
                 }
             }
         }
@@ -68,7 +72,7 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 8
             onClicked: {
-                root.destroy()
+                item.destroy()
                 mainWindow.enableButtons()
             }
         }

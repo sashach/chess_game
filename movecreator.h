@@ -1,15 +1,14 @@
 #ifndef MOVECREATOR_H
 #define MOVECREATOR_H
 
+#include "piecesmanager.h"
+#include "basemove.h"
 
 class MoveCreator
 {
 public:
     MoveCreator();
-
-signals:
-
-public slots:
+    BaseMove * CreateMove(PiecesManager::PiecesTypes t);
 };
 
 #endif // MOVECREATOR_H

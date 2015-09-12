@@ -2,8 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "chessboardform.h"
-#include "piecesmanager.h"
 #include "chessboardmodel.h"
+#include "chessgamestorage.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,8 +13,11 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
+    ChessGameStorage storage;
+
     QQmlContext* ctx = engine.rootContext();
     ctx->setContextProperty("chessBoardModel", &ChessBoardModel::Instance());
+    ctx->setContextProperty("chessGameStorage", &storage);
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

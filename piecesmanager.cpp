@@ -10,12 +10,6 @@ PiecesManager::~PiecesManager()
 
 }
 
-PiecesManager & PiecesManager::Instance()
-{
-    static PiecesManager PiecesManagerInstance;
-    return PiecesManagerInstance;
-}
-
 void PiecesManager::Init()
 {
     PiecesImages.clear();

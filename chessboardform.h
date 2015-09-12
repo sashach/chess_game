@@ -2,6 +2,7 @@
 #define CHESSBOARDFORM_H
 
 #include <QQuickPaintedItem>
+#include "piecesmanager.h"
 
 class ChessBoardForm : public QQuickPaintedItem
 {
@@ -24,6 +25,7 @@ private:
     };
 
     int BaseX, BaseY;
+    PiecesManager Pieces;
 
 signals:
 
